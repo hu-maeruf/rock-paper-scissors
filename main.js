@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     let compChoice = Math.floor(Math.random() * 3) + 1;  // Get number between 1 and 3 inclusive
 
