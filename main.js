@@ -33,3 +33,20 @@ function playRound(humanChoice, computerChoice) {
         computerScore += 1
     }
 }
+
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+    if (humanScore > computerScore) {
+            console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"YOU WON!"`);
+    } else if (humanScore < computerScore) {
+            console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"YOU LOSE!"`);
+    } else {
+        console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"DRAW!"`)
+    }
+}
+
+playGame()
