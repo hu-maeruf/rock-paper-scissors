@@ -16,3 +16,20 @@ function getHumanChoice() {
     let userChoice = prompt("Type \"Rock\", \"Paper\" or \"Scissor\": "); // Get user choice
     return userChoice;
 }
+
+function playRound(humanChoice, computerChoice) {
+    humanChoice = humanChoice.toLowerCase()
+    let humanChoiceUpper = humanChoice.toUpperCase()
+    let compChoiceUpper = computerChoice.toUpperCase()
+
+    // Determines the winner or loser and track the score 
+    if ((humanChoice === "rock" && computerChoice === "scissor") || (humanChoice === "scissor" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice === "rock")) {
+        console.log(`You win! ${humanChoiceUpper} beats ${compChoiceUpper}.`)
+        humanScore+= 1
+    } else if (humanChoice === computerChoice) {
+        console.log("Draw!")
+    } else {
+        console.log(`You lose! ${compChoiceUpper} beats ${humanChoiceUpper}.`)
+        computerScore += 1
+    }
+}
