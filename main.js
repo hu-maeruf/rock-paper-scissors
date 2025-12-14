@@ -23,7 +23,7 @@ function playRound(humanChoice, computerChoice) {
     let compChoiceUpper = computerChoice.toUpperCase()
 
     // Determines the winner or loser and track the score 
-    if ((humanChoice === "rock" && computerChoice === "scissor") || (humanChoice === "scissor" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice === "rock")) {
+    if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "scissors" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice === "rock")) {
         console.log(`You win! ${humanChoiceUpper} beats ${compChoiceUpper}.`)
         humanScore+= 1
     } else if (humanChoice === computerChoice) {
@@ -35,18 +35,24 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
+    // for (let i = 0; i < 5; i++) {
+    const humanSelection = document.querySelectorAll("button");
+    humanSelection.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+            let playerSelection = event.target.id;
+            console.log(playerSelection);
+            const computerSelection = getComputerChoice();
+            playRound(playerSelection, computerSelection);
+        });
+    });
+    // }
     if (humanScore > computerScore) {
             console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"YOU WON!"`);
     } else if (humanScore < computerScore) {
             console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"YOU LOSE!"`);
-    } else {
-        console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"DRAW!"`)
-    }
-}
+    } else if (humanScore !== 0 && computerScore !== 0){
+        console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"DRAW!"`);
+    };
+};
 
 playGame()
