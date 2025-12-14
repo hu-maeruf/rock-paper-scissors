@@ -23,13 +23,14 @@ function playRound(humanChoice, computerChoice) {
     let compChoiceUpper = computerChoice.toUpperCase()
 
     // Determines the winner or loser and track the score 
+    const display = document.createElement("div");
     if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "scissors" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice === "rock")) {
-        console.log(`You win! ${humanChoiceUpper} beats ${compChoiceUpper}.`)
+        display.textContent = `You win! ${humanChoiceUpper} beats ${compChoiceUpper}.`;
         humanScore+= 1
     } else if (humanChoice === computerChoice) {
-        console.log("Draw!")
+        display.textContent = "Draw!";
     } else {
-        console.log(`You lose! ${compChoiceUpper} beats ${humanChoiceUpper}.`)
+        display.textContent = `You lose! ${compChoiceUpper} beats ${humanChoiceUpper}.`;
         computerScore += 1
     }
 }
