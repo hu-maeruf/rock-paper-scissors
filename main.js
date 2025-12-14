@@ -40,6 +40,7 @@ function playGame() {
     const humanSelection = document.querySelectorAll("button");
     let round = 0;
     let isGameOver = false;
+    const finalResult = document.createElement("div");
     humanSelection.forEach((btn) => {
         btn.addEventListener("click", (event) => {
             let playerSelection = event.target.id;
@@ -47,20 +48,19 @@ function playGame() {
                 return;
             }
             if (round < 5) {
-                console.log(playerSelection);
                 const computerSelection = getComputerChoice();
                 playRound(playerSelection, computerSelection);
                 round++;
-                console.log(round);
                 if (round === 5) {
                     isGameOver = true;
                     if (humanScore > computerScore) {
-                        console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"YOU WON!"`);
+                        finalResult.textContent = (`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t"YOU WON!"`);
                     } else if (humanScore < computerScore) {
-                        console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"YOU LOSE!"`);
+                        finalResult.textContent = (`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t"YOU LOSE!"`);
                     } else {
-                        console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"DRAW!"`);
+                        finalResult.textContent = (`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t"DRAW!"`);
                     };
+                    document.body.appendChild(finalResult);
                     return
                 };
             };
