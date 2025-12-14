@@ -25,35 +25,47 @@ function playRound(humanChoice, computerChoice) {
     // Determines the winner or loser and track the score 
     const display = document.createElement("div");
     if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "scissors" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice === "rock")) {
-        display.textContent = `You win! ${humanChoiceUpper} beats ${compChoiceUpper}.`;
+        display.textContent = (`You win! ${humanChoiceUpper} beats ${compChoiceUpper}.`);
         humanScore+= 1
     } else if (humanChoice === computerChoice) {
-        display.textContent = "Draw!";
+        display.textContent = ("Draw!");
     } else {
-        display.textContent = `You lose! ${compChoiceUpper} beats ${humanChoiceUpper}.`;
+        display.textContent = (`You lose! ${compChoiceUpper} beats ${humanChoiceUpper}.`);
         computerScore += 1
-    }
-}
+    };
+    document.body.appendChild(display);
+};
 
 function playGame() {
-    // for (let i = 0; i < 5; i++) {
     const humanSelection = document.querySelectorAll("button");
+    let round = 0;
+    let isGameOver = false;
     humanSelection.forEach((btn) => {
         btn.addEventListener("click", (event) => {
             let playerSelection = event.target.id;
-            console.log(playerSelection);
-            const computerSelection = getComputerChoice();
-            playRound(playerSelection, computerSelection);
+            if (isGameOver) {
+                return;
+            }
+            if (round < 5) {
+                console.log(playerSelection);
+                const computerSelection = getComputerChoice();
+                playRound(playerSelection, computerSelection);
+                round++;
+                console.log(round);
+                if (round === 5) {
+                    isGameOver = true;
+                    if (humanScore > computerScore) {
+                        console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"YOU WON!"`);
+                    } else if (humanScore < computerScore) {
+                        console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"YOU LOSE!"`);
+                    } else {
+                        console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"DRAW!"`);
+                    };
+                    return
+                };
+            };
         });
     });
-    // }
-    if (humanScore > computerScore) {
-            console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"YOU WON!"`);
-    } else if (humanScore < computerScore) {
-            console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"YOU LOSE!"`);
-    } else if (humanScore !== 0 && computerScore !== 0){
-        console.log(`Final Score:\n\tHuman Score: ${humanScore}\n\tComputer Score: ${computerScore}\n\t\t\t\t"DRAW!"`);
-    };
 };
 
 playGame()
